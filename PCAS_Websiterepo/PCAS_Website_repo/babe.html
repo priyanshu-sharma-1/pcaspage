@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alumni Mentorship Hub</title>
+  <!-- Link all your CSS files -->
+  <link rel="stylesheet" href="PCAS.css" />
+  <link rel="stylesheet" href="gllory.css" />
+  <link rel="stylesheet" href="book.css" />
+  <link rel="stylesheet" href="ask.css" />
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav_in">
+      <a href="#gallery"><img class="logo" src="poornima_org.svg" alt="Logo" /></a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#book" class="nav-link">Book a Slot</a>
+      <a href="#ask" class="nav-link">Ask Question</a>
+    </div>
+  </nav>
+
+  <!-- Headline -->
+  <div class="headline">
+    <h1>Alumni Mentorship Hub</h1>
+  </div>
+
+  <!-- Sections -->
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="section">
+    <div class="gllory">
+      <video class="center_video" autoplay muted loop src="poornima_intro.mp4"></video>
+    </div>
+  </section>
+
+  <!-- Book a Slot Section -->
+  <section id="book" class="section">
+    <form action="https://formspree.io/f/movngkqd" method="post">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="date">Preferred Date</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="time">Preferred Time</label>
+      <input type="time" id="time" name="time" required>
+
+      <label for="message">Additional Message</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <!-- Ask Question Section -->
+  <section id="ask" class="section">
+    <h2>Ask a Question</h2>
+    <form class="question-form">
+      <label for="qname">Your Name:</label>
+      <input type="text" id="qname" name="qname" placeholder="Enter your name" required>
+
+      <label for="question">Your Question:</label>
+      <textarea id="question" name="question" rows="4" placeholder="Type your question here..." required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="questions-list">
+      <div class="question-card">
+        <p><strong>John (Student):</strong> How do I prepare for coding interviews?</p>
+        <p><em>Alumni Reply:</em> Focus on projects, practice DSA daily, and participate in contests.</p>
+      </div>
+      <div class="question-card">
+        <p><strong>Priya (Student):</strong> Which internships are good for IoT?</p>
+        <p><em>Alumni Reply:</em> Look for startups or companies like Bosch and Wipro for hands-on experience.</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

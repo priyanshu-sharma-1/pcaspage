@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background: linear-gradient(135deg, #d9e2ec, #7da3c7);
+
+}
+
+.center_video{
+    width: 980px;
+    border-radius: 80px;
+    height: auto;
+
+      
+
+
+
+}
+
+gllory {
+
+    align-items: center;
+    justify-content: center;
+
+}

@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #c1cbe0, #8aa6c6);
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.flashcards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.card .links a {
+    display: inline-block;
+    margin: 5px;
+    text-decoration: none;
+    color: #0077b5;
+    /* LinkedIn color */
+    font-weight: bold;
+}
+
+.card .links a:first-child {
+    color: #E1306C;
+    /* Instagram color */
+}
