@@ -1,0 +1,824 @@
+/* --- Basic Reset & Typography --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Clean, professional font */
+}
+
+/* --- Header Container --- */
+.alumni-header {
+    background-color: #ffffff;
+    /* Adds a subtle shadow to separate the nav from the image below */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* --- Top Bar (Logo & Register) --- */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    border-bottom: 1px solid #f0f0f0;
+    /* Crisp divider line */
+}
+
+.logo img {
+    height: 55px;
+    /* Adjust based on your logo's dimensions */
+}
+
+.top-links {
+    font-size: 16px;
+}
+
+.top-links a {
+    text-decoration: none;
+    color: #1a365d;
+    /* Deep blue from the logo */
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.top-links a:hover {
+    color: #e65100;
+    /* Orange accent from the logo */
+}
+
+.top-links .divider {
+    margin: 0 12px;
+    color: #cccccc;
+}
+
+/* --- Main Navigation --- */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    padding: 16px 0;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 45px;
+    /* Spacious breathing room between links */
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #4a5568;
+    /* Soft dark gray for less eye strain */
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+    /* Crucial for the hover animation */
+    padding-bottom: 6px;
+    transition: color 0.3s ease;
+}
+
+/* --- The Hover Animation (Expanding Underline) --- */
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    /* Starts the line from the center */
+    background-color: #e65100;
+    /* Poornima Orange */
+    transition: width 0.3s ease, left 0.3s ease;
+    /* Smooth slide effect */
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: #1a365d;
+    /* Text turns dark blue on hover */
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after {
+    width: 100%;
+    left: 0;
+    /* Expands to full width */
+}
+
+/* --- Success Stories Section Layout --- */
+.success-stories {
+    padding: 80px 5%;
+    background-color: #fafafa;
+    /* Soft off-white background */
+    text-align: center;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    color: #1a365d;
+    /* Poornima Blue */
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.section-header .highlight {
+    color: #e65100;
+    /* Poornima Orange */
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    /* Space between cards */
+    flex-wrap: wrap;
+}
+
+/* --- The Card Base --- */
+.story-card {
+    width: 320px;
+    height: 400px;
+    border-radius: 16px;
+    /* Slightly rounder edges look more modern */
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    /* Very soft resting shadow */
+    cursor: pointer;
+    /* Smooth transition for the card lifting off the page */
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1),
+        box-shadow 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* always-visible name strip */
+.card-name {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(26, 54, 93, 0.75);
+    color: #fff;
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.5px;
+    transition: background 0.3s ease;
+    pointer-events: none;
+    /* allow clicks to pass through */
+}
+
+/* brighten the name bar on hover */
+.story-card:hover .card-name {
+    background: rgba(26, 54, 93, 0.9);
+}
+
+/* LinkedIn link styling */
+.card-overlay .linkedin {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #e65100;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.card-overlay .linkedin:hover {
+    text-decoration: underline;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Snappy but smooth zoom transition */
+    transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* --- The Modern Overlay (Glassmorphism & Slide-in) --- */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    /* Covers the entire card */
+    padding: 40px 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Pushes text to the bottom */
+
+    /* Modern gradient + blur effect */
+    background: linear-gradient(to top, rgba(26, 54, 93, 0.95) 0%, rgba(26, 54, 93, 0.4) 50%, transparent 100%);
+    backdrop-filter: blur(4px);
+    /* The "glass" effect */
+    -webkit-backdrop-filter: blur(4px);
+    /* Safari support */
+
+    opacity: 0;
+    /* Hidden initially */
+    transform: translateY(100%);
+    /* slide up on hover */
+    color: #ffffff;
+    text-align: center;
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* --- Initial Text States (Pushed down and invisible) --- */
+.card-overlay h3,
+.card-overlay .role,
+.card-overlay .year,
+.card-overlay .linkedin {
+    opacity: 0;
+    transform: translateY(20px);
+    /* The cubic-bezier makes it start fast and settle smoothly */
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.card-overlay h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.card-overlay .role {
+    font-size: 15px;
+    color: #e65100;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.card-overlay .year {
+    font-size: 14px;
+    color: #cccccc;
+}
+
+/* --- Triggering the Hover Animations --- */
+
+/* 1. Lift the card and deepen the shadow with a slight 3D tilt */
+.story-card:hover {
+    transform: translateY(-12px) rotateX(2deg);
+    box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
+    /* Tinted shadow matching your brand */
+}
+
+/* 2. Slow zoom on the image */
+.story-card:hover .card-image img {
+    transform: scale(1.10);
+}
+
+/* 3. Slide-up and reveal the glass overlay */
+.story-card:hover .card-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 4. Staggered text reveal (Notice the different transition-delays) */
+.story-card:hover .card-overlay h3 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+    /* Comes in first */
+}
+
+.story-card:hover .card-overlay .role {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+    /* Comes in second */
+}
+
+.story-card:hover .card-overlay .year {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+    /* Comes in third */
+}
+
+.story-card:hover .card-overlay .linkedin {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+    /* Last element */
+}
+
+/* --- Initial Load Animation (Fade In & Slide Up) --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    opacity: 0;
+    /* Starts invisible */
+    /* Uses the inline animation-delay from HTML to stagger them */
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* ========================================= */
+/* WHY TO CONNECT SECTION                    */
+/* ========================================= */
+
+.why-connect-section {
+    padding: 80px 5%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+.why-connect-section .container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.why-connect-section .section-heading {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.why-connect-section .highlight-orange {
+    color: #FF7F00;
+}
+
+.why-connect-section .highlight-black {
+    color: #000000;
+}
+
+.why-connect-section .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.why-connect-section .card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 40px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* Bottom sliding border */
+.why-connect-section .card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: #FF7F00;
+    transition: width 0.4s ease;
+    z-index: 2;
+}
+
+.why-connect-section .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.why-connect-section .card:hover::after {
+    width: 100%;
+}
+
+.why-connect-section .card-icon {
+    font-size: 2.5rem;
+    color: #2A2A72;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.why-connect-section .card:hover .card-icon {
+    transform: scale(1.1);
+}
+
+.why-connect-section .card-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000000;
+    font-family: 'Poppins', sans-serif;
+}
+
+.why-connect-section .card-desc {
+    color: #666666;
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Entrance Animations */
+.why-connect-section .fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.why-connect-section .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .why-connect-section .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .why-connect-section .section-heading {
+        font-size: 28px;
+    }
+}
+
+/* ========================================= */
+/* NEWS ROOM SECTION                         */
+/* ========================================= */
+
+.news-room-section {
+    padding: 60px 5%; /* Adjusted vertical padding to 60px */
+    position: relative;
+    background: #FFFFFF; /* Pure white background */
+    font-family: 'Poppins', sans-serif;
+}
+
+.news-room-section .news-container {
+    max-width: 1100px; /* Matching the header's wider content alignment */
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.news-room-section .section-heading {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 60px;
+}
+
+.news-room-section .highlight-orange { color: #FF7F00; }
+.news-room-section .highlight-black { color: #1a1a1a; }
+
+.glass-stack {
+    position: relative;
+    padding-bottom: 120px; 
+}
+
+.glass-card {
+    /* Institutional Glassmorphism Lite */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e0e0e0;
+    border-radius: 12px; /* Geometric Consistency */
+    
+    padding: 30px;
+    margin-bottom: 30px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* High-End Shadow */
+    
+    /* Interactive Sticky Stacking iOS Style */
+    position: sticky;
+    
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover slightly brightens the glass */
+.glass-card:hover {
+    background-color: #FFFFFF;
+}
+
+.glass-card.featured {
+    padding: 35px 30px;
+    background-color: rgba(255, 255, 255, 0.98);
+}
+
+.glass-card.event-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid #FF7F00; /* Distinct border */
+}
+
+/* Card Elements */
+.glass-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #FF7F00;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 127, 0, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(255, 127, 0, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 127, 0, 0); }
+}
+
+.live-text {
+    font-weight: 700;
+    color: #FF7F00;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.tag {
+    background: #FF7F00; /* Minimalist use of accent */
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.glass-card .card-body.has-thumbnail {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.glass-card .thumbnail {
+    flex-shrink: 0;
+    width: 140px;
+    height: 100px;
+    border-radius: 10px; /* matched slightly with 12px outer */
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
+}
+
+.glass-card .thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.glass-card:hover .thumbnail img {
+    transform: scale(1.05);
+}
+
+.glass-card .headline {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a365d; /* Navy Blue matching menu */
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.glass-card .date {
+    display: inline-block;
+    color: #FF7F00;
+    font-weight: 600;
+    font-size: 13px;
+    background-color: #f0f0f0; /* Subtle light-gray background */
+    padding: 4px 12px;
+    border-radius: 8px;
+}
+
+.glass-card .event-tag {
+    display: inline-block;
+    color: #FF7F00;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.glass-card .event-date {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #FF7F00;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .glass-card .card-body.has-thumbnail {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .glass-card .thumbnail {
+        width: 100%;
+        height: 180px;
+    }
+    
+    .glass-card .headline {
+        font-size: 18px;
+    }
+    
+    .news-room-section .section-heading {
+        font-size: 28px;
+    }
+}
+
+/* ========================================= */
+/* BENTO GRID HERO SECTION                   */
+/* ========================================= */
+
+.bento-hero-section {
+    padding: 80px 5%;
+    background-color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.bento-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, minmax(200px, auto));
+    gap: 30px;
+}
+
+.bento-tile {
+    background-color: rgba(248, 249, 250, 1);
+    border-radius: 20px;
+    padding: 50px 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Interactivity Hover Lift and Reveal glow */
+.bento-tile:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(255, 127, 0, 0.1);
+    border-color: rgba(255, 127, 0, 0.3);
+}
+
+.main-tile {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: linear-gradient(135deg, rgba(248, 249, 250, 1) 0%, #ffffff 100%);
+    position: relative;
+}
+
+/* Abstract Subtle Graphic Overlay */
+.main-tile::before {
+    content: '';
+    position: absolute;
+    right: -50px;
+    bottom: -50px;
+    width: 300px;
+    height: 300px;
+    background-image: url('https://placehold.co/300x300/e0e0e0/cccccc?text=PCAS');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.main-tile > * {
+    position: relative;
+    z-index: 1;
+}
+
+.bento-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #003366; /* Navy Blue */
+    margin-bottom: 25px;
+    line-height: 1.25;
+}
+
+.bento-title .orange-text {
+    color: #FF7F00;
+}
+
+.bento-desc {
+    font-size: 18px;
+    color: #4a5568;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 90%;
+}
+
+.bento-btn {
+    display: inline-block;
+    background-color: #FF7F00;
+    color: #ffffff;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 127, 0, 0.3);
+}
+
+.bento-btn:hover {
+    background-color: #e67300;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 127, 0, 0.4);
+}
+
+.stat-tile {
+    text-align: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.stat-number {
+    font-size: 56px;
+    font-weight: 800;
+    color: #FF7F00;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #003366;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-tile {
+    padding: 40px;
+}
+
+.info-tile .info-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #003366;
+}
+
+.info-tile .info-desc {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #4a5568;
+}
+
+/* Responsiveness */
+@media (max-width: 992px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    
+    .main-tile {
+        grid-column: span 1;
+        grid-row: span 1;
+        padding: 40px 25px;
+    }
+    
+    .bento-title {
+        font-size: 32px;
+    }
+    
+    .stat-number {
+        font-size: 48px;
+    }
+    
+    .bento-desc {
+        max-width: 100%;
+        font-size: 16px;
+    }
+}

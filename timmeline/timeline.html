@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yearly Alumni Timeline</title>
+    <meta name="description" content="A yearly timeline of our wonderful alumni with a beautiful masonry gallery.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Using Google Fonts for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <h1>Alumni Timeline</h1>
+        <p>A look back at our unforgettable moments.</p>
+    </header>
+
+    <main class="timeline-container">
+        <!-- Timeline Navigation -->
+        <nav class="timeline-nav" aria-label="Timeline Navigation">
+            <ul class="timeline-list">
+                <li class="timeline-node active" data-year="2025" tabindex="0" role="button" aria-pressed="true">2025</li>
+                <li class="timeline-node" data-year="2024" tabindex="0" role="button" aria-pressed="false">2024</li>
+                <li class="timeline-node" data-year="2023" tabindex="0" role="button" aria-pressed="false">2023</li>
+                <li class="timeline-node" data-year="2022" tabindex="0" role="button" aria-pressed="false">2022</li>
+            </ul>
+        </nav>
+
+        <!-- Content Area -->
+        <section class="timeline-content" aria-live="polite">
+            <h2 id="year-title" class="year-title">Class of 2025</h2>
+            <div id="gallery-grid" class="gallery-grid">
+                <!-- Javascript will inject images here -->
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

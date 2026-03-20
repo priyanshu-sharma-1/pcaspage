@@ -1,0 +1,283 @@
+/* Core Variables & Resets */
+:root {
+    --primary-color: #000080; /* Navy Blue */
+    --accent-color: #FFD700; /* Gold */
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --timeline-bg: #ffffff;
+    --node-inactive: #b0b0b0;
+    --transition-speed: 0.4s;
+    --font-family: 'Inter', system-ui, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #000040 100%);
+    color: var(--accent-color);
+    text-align: center;
+    padding: 4rem 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #fff;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+/* Timeline Layout */
+.timeline-container {
+    max-width: 1200px;
+    margin: -2rem auto 4rem;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+@media (min-width: 768px) {
+    .timeline-container {
+        flex-direction: row;
+        align-items: flex-start;
+        margin-top: -3rem;
+    }
+}
+
+/* Timeline Navigation (Vertical on Desktop, Horizontal on Mobile) */
+.timeline-nav {
+    flex: 0 0 200px;
+    background: var(--timeline-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 2rem;
+}
+
+.timeline-list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    justify-content: space-between;
+    gap: 1.5rem;
+    position: relative;
+    scrollbar-width: none; /* Firefox */
+}
+.timeline-list::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+@media (min-width: 768px) {
+    .timeline-list {
+        flex-direction: column;
+        overflow-x: visible;
+        padding-bottom: 0;
+        gap: 2.5rem;
+    }
+
+    /* Vertical Line */
+    .timeline-list::before {
+        content: '';
+        position: absolute;
+        top: 15px;
+        bottom: 15px;
+        left: 21px; /* Center with node bubbles */
+        width: 2px;
+        background-color: var(--node-inactive);
+        z-index: 0;
+        opacity: 0.5;
+    }
+}
+
+/* Timeline Nodes */
+.timeline-node {
+    position: relative;
+    z-index: 1;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--node-inactive);
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    white-space: nowrap;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+/* Keyboard focus style */
+.timeline-node:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+}
+
+@media (min-width: 768px) {
+    .timeline-node {
+        padding: 0;
+        border-radius: 0;
+    }
+    .timeline-node::before {
+        content: '';
+        display: block;
+        width: 16px;
+        height: 16px;
+        background-color: var(--node-inactive);
+        border-radius: 50%;
+        border: 4px solid var(--timeline-bg);
+        transition: all var(--transition-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        flex-shrink: 0;
+        margin-left: 10px;
+        box-sizing: content-box;
+    }
+}
+
+.timeline-node:hover {
+    color: var(--primary-color);
+}
+
+@media (min-width: 768px) {
+    .timeline-node:hover {
+        transform: translateX(5px);
+    }
+}
+
+.timeline-node.active {
+    color: var(--primary-color);
+}
+
+@media (min-width: 768px) {
+    .timeline-node.active::before {
+        background-color: var(--accent-color);
+        border-color: var(--primary-color);
+        transform: scale(1.4);
+    }
+}
+@media (max-width: 767px) {
+    .timeline-node.active {
+        color: var(--accent-color);
+        background: var(--primary-color);
+    }
+}
+
+/* Content Area */
+.timeline-content {
+    flex: 1;
+    background: var(--timeline-bg);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    min-height: 60vh;
+}
+
+.year-title {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.2rem;
+}
+
+.year-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60%;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+/* Masonry Grid (CSS Grid implementation) */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-auto-rows: 180px;
+    gap: 1.5rem;
+    grid-auto-flow: dense; /* Crucial for masonry feel */
+}
+
+/* Image container styling */
+.gallery-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    /* Animation classes */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover {
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+/* Randomize masonry spans */
+.gallery-item.span-2-row { grid-row: span 2; }
+.gallery-item.span-2-col { grid-column: span 2; }
+@media (max-width: 550px) {
+    .gallery-item.span-2-col { grid-column: span 1; }
+}
+
+/* Animation Keyframes */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Staggered animation delays for items */
+.gallery-item:nth-child(1) { animation-delay: 0.05s; }
+.gallery-item:nth-child(2) { animation-delay: 0.1s; }
+.gallery-item:nth-child(3) { animation-delay: 0.15s; }
+.gallery-item:nth-child(4) { animation-delay: 0.2s; }
+.gallery-item:nth-child(5) { animation-delay: 0.25s; }
+.gallery-item:nth-child(6) { animation-delay: 0.3s; }
+.gallery-item:nth-child(7) { animation-delay: 0.35s; }
